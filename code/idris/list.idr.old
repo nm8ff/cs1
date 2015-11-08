@@ -1,0 +1,36 @@
+module list_nat
+
+import bool
+import pair
+import nat
+
+data list_nat = nil | cons nat list_nat
+
+length: list_nat -> nat
+length nil = O
+length (cons n l') = S (length l')
+
+appdp: pair list_nat list_nat -> list_nat
+appdp (mkPair nil a) = a
+appdp (mkPair (cons n l) m) = cons n (appdp (mkPair l m))
+
+10/10
+{-data list a = nil | cons a (list a)
+
+-- the functions
+
+||| return the length of any given list
+length: list a -> nat
+length nil = O
+length (cons n l') = S (length l')
+
+||| return the result of appending two lists
+appd: list a -> list a -> list a
+appd nil l2 = l2
+appd (cons h l2') l2 = cons h (appd l2' l2)-}
+
+10/15
+||| return the result of appending two lists
+appd: list a -> list a -> list a
+appd nil l2 = l2
+appd (h :: t) l2 = h :: (appd t l2)
